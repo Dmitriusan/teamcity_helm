@@ -12,6 +12,9 @@ image:
 
 pvc:
   data: teamcity-data
+  # Or
+  existingDataPvc: ""
+
   logs: teamcity-logs
   config: ""
 

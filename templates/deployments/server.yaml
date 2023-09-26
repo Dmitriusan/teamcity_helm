@@ -36,7 +36,10 @@ spec:
           mountPath: /opt/teamcity/logs
       volumes:
       - name: teamcity-data
-      {{- if .Values.pvc.data }}
+      {{- if .Values.pvc.existingDataPvc }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.pvc.existingDataPvc }}
+      {{- else if .Values.pvc.data }}
         persistentVolumeClaim:
           claimName: {{ .Values.pvc.data }}
       {{- else }}
@@ -61,7 +64,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end -}}
-{{- if .Values.pvc.data }}
+{{- if and .Values.pvc.data (not .Values.pvc.existingDataPvc) }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
