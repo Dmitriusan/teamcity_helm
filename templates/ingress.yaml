@@ -40,7 +40,7 @@ spec:
                 name: {{ $fullName }}
                 port:
                   number: {{ $svcPort }}
-            pathType: Exact
+            pathType: Prefix
           {{- end }}
     {{- end }}
   {{- end }}
