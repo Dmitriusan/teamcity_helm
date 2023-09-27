@@ -10,6 +10,11 @@ image:
   tag: ""
   pullPolicy: IfNotPresent
 
+teamcity:
+  server:
+    # Environment properties that will be passed to docker container
+    env: {}
+
 pvc:
   data: teamcity-data
   # Or can be overwritten by defining an existing PVC

@@ -10,6 +10,7 @@ By default, it uses EmptyDir for Volumes and Ingress is disabled.
 - pvc.config: A PVC name for the configuration on the Agent (default: "").
 - ingress.enabled: Set to true to enable Ingress
 - ingress.hosts: Array of Host entries for Ingress
+- teamcity.server.env: Environment properties that will be passed to TeamCity Server container
 
 # Install
 - Add Coda Charts Helm Repo
