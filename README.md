@@ -18,3 +18,65 @@ By default, it uses EmptyDir for Volumes and Ingress is disabled.
 - Install with Helm
 
   `helm install teamcity coda-charts/teamcity`
+
+# Example of values.yaml
+```yaml
+agentReplicaCount: 2
+
+image:
+  server:
+    repository: jetbrains/teamcity-server
+  agent:
+    repository: jetbrains/teamcity-agent
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+pvc:
+  existingDataPvc: "my-teamcity-pvc"
+  config: ""
+  logs: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  int_type: ClusterIP
+  ext_type: NodePort
+  port: 8111
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: lets-encrypt
+    ingress.kubernetes.io/whitelist-source-range: "10.00.0.0/8"
+  hosts:
+    - host: build.my.io
+      paths: ["/"]
+  tls:
+    - secretName: build.my.io-ingress-tls
+      hosts:
+        - build.my.io
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+#   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+```
