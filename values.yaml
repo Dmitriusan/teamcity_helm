@@ -12,7 +12,7 @@ image:
 
 pvc:
   data: teamcity-data
-  # Or
+  # Or can be overwritten by defining an existing PVC
   existingDataPvc: ""
 
   logs: teamcity-logs
